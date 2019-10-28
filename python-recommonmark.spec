@@ -7,7 +7,7 @@
 
 %define		commit	33b5c2a4ec50d18d3f659aa119d3bd11452327da
 %define		snap	20180907
-%define		rel	2
+%define		rel	3
 
 Summary:	docutils-compatibility bridge to CommonMark
 Summary(pl.UTF-8):	Pomost zgodności z docutils dla CommonMark
