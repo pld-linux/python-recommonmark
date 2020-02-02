@@ -5,27 +5,28 @@
 %bcond_without	doc	# Sphinx documentation
 %bcond_without	tests	# unit tests
 
-%define		commit	33b5c2a4ec50d18d3f659aa119d3bd11452327da
-%define		snap	20180907
-%define		rel	4
-
 Summary:	docutils-compatibility bridge to CommonMark
 Summary(pl.UTF-8):	Pomost zgodności z docutils dla CommonMark
 Name:		python-recommonmark
-Version:	0.5.0
-Release:	0.%{snap}.%{rel}
+Version:	0.6.0
+Release:	1
 License:	MIT
 Group:		Libraries/Python
-Source0:	https://github.com/rtfd/recommonmark/archive/%{commit}/recommonmark-%{commit}.tar.gz
-# Source0-md5:	64cc2f674a76bf740594055a3be32a2d
-Patch0:		%{name}-cm.patch
+# in case snapshot is required:
+#Source0:	https://github.com/rtfd/recommonmark/archive/%{commit}/recommonmark-%{commit}.tar.gz
+#Source0Download: https://pypi.org/simple/recommonmark/
+Source0:	https://files.pythonhosted.org/packages/source/r/recommonmark/recommonmark-%{version}.tar.gz
+# Source0-md5:	41edafd4f92392f2b49a1443bab27b90
+# from https://github.com/readthedocs/recommonmark/pull/124
+# https://github.com/readthedocs/recommonmark/commit/917e0359fa93acd9b22d7122e2c03d994d9fda44.patch
+Patch0:		%{name}-math.patch
 URL:		https://recommonmark.readthedocs.io/en/latest/
 %if %{with python2}
 BuildRequires:	python-modules >= 1:2.7
 BuildRequires:	python-setuptools
 %if %{with tests}
 BuildRequires:	python-Sphinx >= 1.3.1
-BuildRequires:	python-commonmark >= 0.8
+BuildRequires:	python-commonmark >= 0.8.1
 BuildRequires:	python-docutils >= 0.11
 BuildRequires:	python-pytest
 %endif
@@ -35,7 +36,7 @@ BuildRequires:	python3-modules >= 1:3.3
 BuildRequires:	python3-setuptools
 %if %{with tests}
 BuildRequires:	python3-Sphinx >= 1.3.1
-BuildRequires:	python3-commonmark >= 0.8
+BuildRequires:	python3-commonmark >= 0.8.1
 BuildRequires:	python3-docutils >= 0.11
 BuildRequires:	python3-pytest
 %endif
@@ -83,7 +84,7 @@ Documentation for Python recommonmark module.
 Dokumentacja modułu Pythona recommonmark.
 
 %prep
-%setup -q -n recommonmark-%{commit}
+%setup -q -n recommonmark-%{version}
 %patch0 -p1
 
 %build
@@ -145,7 +146,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/cm2xetex-2
 %attr(755,root,root) %{_bindir}/cm2xml-2
 %{py_sitescriptdir}/recommonmark
-%{py_sitescriptdir}/recommonmark-%{version}.dev0-py*.egg-info
+%{py_sitescriptdir}/recommonmark-%{version}-py*.egg-info
 %endif
 
 %if %{with python3}
@@ -165,7 +166,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/cm2xetex-3
 %attr(755,root,root) %{_bindir}/cm2xml-3
 %{py3_sitescriptdir}/recommonmark
-%{py3_sitescriptdir}/recommonmark-%{version}.dev0-py*.egg-info
+%{py3_sitescriptdir}/recommonmark-%{version}-py*.egg-info
 %endif
 
 %if %{with doc}
