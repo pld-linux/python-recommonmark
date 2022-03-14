@@ -8,15 +8,13 @@
 Summary:	docutils-compatibility bridge to CommonMark
 Summary(pl.UTF-8):	Pomost zgodności z docutils dla CommonMark
 Name:		python-recommonmark
-Version:	0.6.0
-Release:	2
+Version:	0.7.1
+Release:	1
 License:	MIT
 Group:		Libraries/Python
-# in case snapshot is required:
-#Source0:	https://github.com/rtfd/recommonmark/archive/%{commit}/recommonmark-%{commit}.tar.gz
 #Source0Download: https://pypi.org/simple/recommonmark/
 Source0:	https://files.pythonhosted.org/packages/source/r/recommonmark/recommonmark-%{version}.tar.gz
-# Source0-md5:	41edafd4f92392f2b49a1443bab27b90
+# Source0-md5:	3c550a76eb62006bf007843a9f1805bb
 # from https://github.com/readthedocs/recommonmark/pull/124
 # https://github.com/readthedocs/recommonmark/commit/917e0359fa93acd9b22d7122e2c03d994d9fda44.patch
 Patch0:		%{name}-math.patch
@@ -92,9 +90,9 @@ Dokumentacja modułu Pythona recommonmark.
 %if %{with python2}
 %py_build
 
-%if %{with tests} && 0
+%if %{with tests}
 # skip: python2 uses different XML formatting, tests expect python3 formatting
-%{__python} -m pytest tests
+%{__python} -m pytest tests -k 'not CustomExtensionTests'
 %endif
 %endif
 
@@ -102,7 +100,8 @@ Dokumentacja modułu Pythona recommonmark.
 %py3_build
 
 %if %{with tests}
-%{__python3} -m pytest tests
+# sphinx tests are too dependent on Sphinx version
+%{__python3} -m pytest tests -k 'not test_sphinx'
 %endif
 %endif
 
