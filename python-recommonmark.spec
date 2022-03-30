@@ -9,7 +9,7 @@ Summary:	docutils-compatibility bridge to CommonMark
 Summary(pl.UTF-8):	Pomost zgodności z docutils dla CommonMark
 Name:		python-recommonmark
 Version:	0.7.1
-Release:	2
+Release:	3
 License:	MIT
 Group:		Libraries/Python
 #Source0Download: https://pypi.org/simple/recommonmark/
