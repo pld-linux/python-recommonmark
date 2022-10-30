@@ -18,6 +18,7 @@ Source0:	https://files.pythonhosted.org/packages/source/r/recommonmark/recommonm
 # from https://github.com/readthedocs/recommonmark/pull/124
 # https://github.com/readthedocs/recommonmark/commit/917e0359fa93acd9b22d7122e2c03d994d9fda44.patch
 Patch0:		%{name}-math.patch
+Patch1:		%{name}-docutils.patch
 URL:		https://recommonmark.readthedocs.io/en/latest/
 %if %{with python2}
 BuildRequires:	python-modules >= 1:2.7
@@ -85,6 +86,7 @@ Dokumentacja modułu Pythona recommonmark.
 %prep
 %setup -q -n recommonmark-%{version}
 %patch0 -p1
+%patch1 -p1
 
 %build
 %if %{with python2}

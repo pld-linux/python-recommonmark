@@ -1,0 +1,18 @@
+--- recommonmark-0.7.1/recommonmark/parser.py.orig	2022-10-30 07:54:15.297435288 +0100
++++ recommonmark-0.7.1/recommonmark/parser.py	2022-10-30 07:54:17.270757930 +0100
+@@ -3,6 +3,7 @@
+ import sys
+ from os.path import splitext
+ 
++import docutils.parsers.rst
+ from docutils import parsers, nodes
+ from sphinx import addnodes
+ 
+@@ -23,6 +24,7 @@ class CommonMarkParser(parsers.Parser):
+     """Docutils parser for CommonMark"""
+ 
+     supported = ('md', 'markdown')
++    settings_spec = parsers.rst.Parser.settings_spec
+     translate_section_name = None
+ 
+     default_config = {
