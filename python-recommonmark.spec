@@ -3,7 +3,7 @@
 %bcond_without	python2 # CPython 2.x module
 %bcond_without	python3 # CPython 3.x module
 %bcond_without	doc	# Sphinx documentation
-%bcond_without	tests	# unit tests
+%bcond_with	tests	# unit tests
 
 Summary:	docutils-compatibility bridge to CommonMark
 Summary(pl.UTF-8):	Pomost zgodności z docutils dla CommonMark
@@ -97,8 +97,6 @@ Dokumentacja modułu Pythona recommonmark.
 
 %if %{with tests}
 # skip: python2 uses different XML formatting, tests expect python3 formatting
-# sphinx tests are too dependent on Sphinx version
-PYTHONPATH=$(pwd) \
 %{__python} -m pytest tests -k 'not CustomExtensionTests'
 %endif
 %endif
@@ -108,7 +106,6 @@ PYTHONPATH=$(pwd) \
 
 %if %{with tests}
 # sphinx tests are too dependent on Sphinx version
-PYTHONPATH=$(pwd) \
 %{__python3} -m pytest tests -k 'not test_sphinx'
 %endif
 %endif
