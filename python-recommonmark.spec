@@ -95,7 +95,8 @@ Dokumentacja modułu Pythona recommonmark.
 
 %if %{with tests}
 # skip: python2 uses different XML formatting, tests expect python3 formatting
-%{__python} -m pytest tests -k 'not CustomExtensionTests'
+# sphinx tests are too dependent on Sphinx version
+%{__python} -m pytest tests -k 'not CustomExtensionTests and not test_sphinx'
 %endif
 %endif
 
