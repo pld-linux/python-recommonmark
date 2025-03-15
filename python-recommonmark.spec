@@ -89,6 +89,8 @@ Dokumentacja modułu Pythona recommonmark.
 %patch -P 0 -p1
 %patch -P 1 -p1
 
+%{__rm} -r */__pycache__ */*.pyc
+
 %build
 %if %{with python2}
 %py_build
@@ -96,7 +98,7 @@ Dokumentacja modułu Pythona recommonmark.
 %if %{with tests}
 # skip: python2 uses different XML formatting, tests expect python3 formatting
 # sphinx tests are too dependent on Sphinx version
-%{__python} -m pytest tests -k 'not CustomExtensionTests and not test_sphinx'
+%{__python} -m pytest tests -k 'not CustomExtensionTests'
 %endif
 %endif
 
